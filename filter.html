@@ -91,6 +91,7 @@
             border-color: #009DA0;
             margin-top: 15px;
             outline: none;
+            border-radius: 50px;
         }
     </style>
 </head>
@@ -114,21 +115,30 @@
                     <input class="form-control" type="number" placeholder="بحث برقم الفاتورة" min="0"
                         data-bind="value:replyNumber" />
                 </div>
-                <div class="form-group col-md-2">
-                    <label>من التاريخ</label>
-                    <input class="form-control" id="datepicker" width="85%" />
-
-                </div>
-                <div class="form-group col-md-2">
+                <div class="col-md-4">
+                    <div class="row">
+                    <div class="form-group col-12 col-sm-6 mb-0">
+                        <label>من التاريخ</label>
+                        <input class="form-control" id="datepicker" width="85%" />
+    
+                    </div>
+             
+              
+                <div class="form-group  col-12 col-sm-6 mb-0">
                     <label>الى التاريخ</label>
                     <input class="form-control" id="datepicker2" width="85%" />
 
                 </div>
-                <div class="col-md-1 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-raised btn-primary round align-self-center mb-0">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
+
+            </div>
+    
+             
+            </div>
+            <div class="col-md-auto d-flex">
+                <button type="submit" class="btn btn-raised btn-primary round align-self-center mb-0">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
             </div>
         </form>
 
