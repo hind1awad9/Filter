@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
-        
     <style>
         body {
             margin: 0;
@@ -93,6 +93,55 @@
             outline: none;
             border-radius: 50px;
         }
+
+        .modal-title {
+            width: 100%;
+            color: #009da0 !important;
+            font-weight: 400;
+        }
+
+        .modal-dialog {
+            max-width: 650px !important;
+        }
+
+        .search {
+            height: 35px !important;
+
+        }
+
+        .search::placeholder {
+            font-size: 13px;
+            font-weight: bold;
+            color: #c2c2df;
+        }
+
+        .fa-arrow-circle-down {
+            color: #009DA0 !important;
+        }
+
+        .closeBtn {
+            border-radius: 20px;
+            border: 1px solid;
+        }
+
+        .modal-footer {
+            justify-content: flex-start !important;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        .form-control[readonly] {
+            background-color: white !important;
+            position: relative;
+        }
+
+        .fa-angle-down {
+            position: absolute;
+            left: 25px;
+            top: 45px;
+        }
     </style>
 </head>
 
@@ -102,13 +151,9 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label>العملاء</label>
-                    <select class="form-control">
-                        <option selected disabled>(قم باختيار العملاء)</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <input data-toggle="modal" data-target="#myModal" class="form-control" type="text" readonly
+                        placeholder="(قم باختيار العملاء)" />
+                    <i class="fa fa-angle-down"></i>
                 </div>
                 <div class="form-group col-md-3">
                     <label>رقم الفاتورة</label>
@@ -117,32 +162,95 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                    <div class="form-group col-12 col-sm-6 mb-0">
-                        <label>من التاريخ</label>
-                        <input class="form-control" id="datepicker" width="85%" />
-    
+                        <div class="form-group col-12 col-sm-6 mb-0">
+                            <label>من التاريخ</label>
+                            <input class="form-control" id="datepicker" width="85%" />
+
+                        </div>
+
+
+                        <div class="form-group  col-12 col-sm-6 mb-0">
+                            <label>الى التاريخ</label>
+                            <input class="form-control" id="datepicker2" width="85%" />
+
+                        </div>
+
                     </div>
-             
-              
-                <div class="form-group  col-12 col-sm-6 mb-0">
-                    <label>الى التاريخ</label>
-                    <input class="form-control" id="datepicker2" width="85%" />
+
 
                 </div>
-
-            </div>
-    
-             
-            </div>
-            <div class="col-md-auto d-flex">
-                <button type="submit" class="btn btn-raised btn-primary round align-self-center mb-0">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+                <div class="col-md-auto d-flex">
+                    <button type="submit" class="btn btn-raised btn-primary round align-self-center mb-0">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
             </div>
         </form>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">قائمة العملاء</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control search"
+                                    placeholder="بحث بإسم و رقم هاتف و جوال أو رمز العميل...">
+
+                            </div>
+
+                        </form>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">رمز العميل</th>
+                                    <th scope="col">العميل</th>
+                                    <th scope="col">نوع العميل</th>
+                                    <th scope="col">المسئول</th>
+                                    <th scope="col">
+                                        <i class="fa fa-phone"></i>
+                                    </th>
+                                    <th scope="col">الأدوات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>محمود</td>
+                                    <td>فرد</td>
+                                    <td>فرد</td>
+                                    <td>012345677</td>
+                                    <td>
+                                        <i class="fa fa-arrow-circle-down font-medium-3 mr-2"></i>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn closeBtn" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                            <span>إلغاء</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 
     </div>
+
     <script type="text/javascript">
 
         $('#datepicker').datepicker({
